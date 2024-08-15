@@ -2,44 +2,41 @@ import React, { useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = ({setToken}) => {
-
-    let navigate = useNavigate()
+const Login = ({ setToken }) => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage('');
-    setError('');
+    setErrorMsg('');
 
     try {
-      const { data ,error } = await supabase.auth.signInWithPassword({
-        email: email,
-        password: password,
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
       });
 
       if (error) {
-        
         throw error;
       }
-      console.log(data)
-      setToken(data)
-      navigate("/home")
 
+      setToken(data.session.access_token); // assuming `data` contains the session token
       setMessage('Login successful!');
+      navigate('/home');
     } catch (err) {
-      setError('Failed to login. Check your credentials.');
+      setErrorMsg('Failed to login. Check your credentials.');
     }
   };
 
   return (
     <div>
       <h2>Login</h2>
-      {message && <p>{message}</p>}
-      {error && <p>{error}</p>}
+      {message && <p style={{ color: 'green' }}>{message}</p>}
+      {errorMsg && <p style={{ color: 'red' }}>{errorMsg}</p>}
       <form onSubmit={handleSubmit}>
         <label>
           Email:
@@ -61,7 +58,7 @@ const Login = ({setToken}) => {
         </label>
         <button type="submit">Login</button>
       </form>
-      Don't have an account? <Link to="/signup">Sign Up</Link>
+      <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
     </div>
   );
 };
