@@ -1,12 +1,13 @@
 import React from 'react';
-import { useAuth } from '../contexts/AuthContext';
 
-const Home = () => {
+
+const Home = ({token}) => {
   
 
   return (
     <div>
-      <h1>Home Page</h1>    
+      <h1>Home Page</h1>
+      <div> Welcome, {token.user.id}</div> 
     </div>
   );
 };

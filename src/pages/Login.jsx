@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { supabase } from '../utils/supabaseClient';
 import { Link, useNavigate } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({setToken}) => {
 
     let navigate = useNavigate()
   const [email, setEmail] = useState('');
@@ -26,6 +26,7 @@ const Login = () => {
         throw error;
       }
       console.log(data)
+      setToken(data)
       navigate("/home")
 
       setMessage('Login successful!');
