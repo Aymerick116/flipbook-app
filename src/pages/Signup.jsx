@@ -67,7 +67,7 @@ const Signup = () => {
         </label>
         <button type="submit">Signup</button>
       </form>
-      Already have an account? <Link to="/login">Login</Link>
+      Already have an account? <Link to="/">Login</Link>
     </div>
   );
 };

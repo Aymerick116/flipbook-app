@@ -26,7 +26,7 @@ function App() {
 
   // Protected route wrapper
   const ProtectedRoute = ({ children }) => {
-    return token ? children : <Navigate to="/login" />;
+    return token ? children : <Navigate to="/" />;
   };
 
   // Redirect logged-in users from login/signup to home
@@ -37,6 +37,14 @@ function App() {
   return (
     <>
       <Routes>
+      <Route 
+          path="/" 
+          element={
+            <RedirectIfAuthenticated>
+              <Login setToken={setToken} />
+            </RedirectIfAuthenticated>
+          } 
+        />
         <Route 
           path="/signup" 
           element={
@@ -45,14 +53,7 @@ function App() {
             </RedirectIfAuthenticated>
           } 
         />
-        <Route 
-          path="/login" 
-          element={
-            <RedirectIfAuthenticated>
-              <Login setToken={setToken} />
-            </RedirectIfAuthenticated>
-          } 
-        />
+        
         <Route 
           path="/home" 
           element={

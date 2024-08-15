@@ -31,7 +31,7 @@ const Home = ({ token, setToken }) => {
   useEffect(() => {
     // Redirect to login if token is missing
     if (!token) {
-      navigate('/login');
+      navigate('/');
     }
   }, [token, navigate]);
 
@@ -40,7 +40,7 @@ const Home = ({ token, setToken }) => {
       await supabase.auth.signOut(); // Log out from Supabase session
       sessionStorage.removeItem('token'); // Remove token from session storage
       setToken(null); // Clear token from state
-      navigate('/login');
+      navigate('/');
     } catch (error) {
       console.error('Logout failed:', error);
     }
