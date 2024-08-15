@@ -2,7 +2,7 @@ import React from "react";
 
 function RightSidebar() {
   return (
-    <div className="w-1/4 bg-white p-6 shadow-md flex flex-col h-screen">
+    <div className="w-1/4 bg-white p-6 shadow-md flex flex-col h-screen rounded-md mr-4">
       <h2 className="text-lg font-semibold text-gray-900">Birthdays 🎂</h2>
       <p className="text-gray-600 mb-6">Pola Foster and 3 other friends have birthdays today</p>
 

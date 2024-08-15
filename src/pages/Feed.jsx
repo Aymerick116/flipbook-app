@@ -3,7 +3,7 @@ import Post from "../components/Post";
 
 function Feed() {
   return (
-    <div className="w-1/2 bg-gray-800 p-6 shadow-md flex flex-col">
+    <div className="w-full bg-gray-800 p-6 shadow-md flex flex-col">
       <div className="mb-6 border-b border-gray-700 pb-4">
         <input
           type="text"
@@ -17,9 +17,12 @@ function Feed() {
           <button className="hover:text-green-400">Feeling</button>
         </div>
       </div>
+
       <div className="flex-1">
         <Post />
-        <Post /><Post /><Post />
+        <Post />
+        <Post />
+        <Post />
         {/* Add more posts here if needed */}
       </div>
     </div>
@@ -27,3 +30,4 @@ function Feed() {
 }
 
 export default Feed;
+
